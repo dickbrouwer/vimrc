@@ -29,7 +29,7 @@ filetype off                  " required!
     Bundle 'tpope/vim-markdown'
 
     " Instant markdown preview
-    Bundle 'suan/vim-instant-markdown'
+    " Bundle 'suan/vim-instant-markdown'
 
     " Twiki syntax highlighting
     Bundle 'https://github.com/vim-scripts/TWiki-Syntax'
@@ -42,6 +42,13 @@ filetype off                  " required!
 
     " Commenting :)
     Bundle 'tomtom/tcomment_vim'
+
+    " Text filtering and alignment
+    Bundle 'https://github.com/godlygeek/tabular'
+
+    " SQL indentation and other goodies (requires the Vim-Align dependency)
+    Bundle 'https://github.com/vim-scripts/SQLUtilities'
+    Bundle 'https://github.com/vim-scripts/Align'
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -65,6 +72,11 @@ set expandtab
 set smartindent
 set ts=2 sts=2 sw=2
 
+" Default wrapping (gq to wrap)
+set tw=79
+set formatoptions+=t
+set linebreak
+
 " Syntax Highlighting on
 syntax on
 
@@ -72,6 +84,7 @@ syntax on
 au FileType python set ts=4 sts=4 sw=4 textwidth=79 foldmethod=indent foldlevel=99
 au FileType html set textwidth=200
 au FileType java set ts=4 sts=4 sw=4
+au FileType markdown set ts=4 sts=4 sw=4
 
 " Go code.
 augroup go
@@ -193,7 +206,7 @@ let g:sparkupNextMapping = '<c-x>' " Prevent issues with tabbing/tab-expansion
 noremap <Leader>d :NERDTreeToggle<CR>
 
 " Customize status line
-set statusline=%<%F%h%m%r%h%w%y\ col:%c%V\ line:%l\,%L\ %P
+set statusline=%<%F%h%m%r%h%w%y\ [%{&fo}]\ col:%c%V\ line:%l\,%L\ %P
 
 if has("gui_running")
     set guioptions=egmrt
@@ -209,3 +222,6 @@ au BufWritePost *.coffee silent CoffeeMake! -b | cwindow
 
 " Log a time entry with Leader ll
 :map <Leader>ll :r!date<CR> A: 
+
+" Visual marker at end of textwidth
+set colorcolumn=+5
