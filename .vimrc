@@ -225,3 +225,6 @@ au BufWritePost *.coffee silent CoffeeMake! -b | cwindow
 
 " Visual marker at end of textwidth
 set colorcolumn=+5
+
+" SQL alignment customizations
+let g:sqlutil_align_where = 0 " do not align the =, >=, <=, ... 
